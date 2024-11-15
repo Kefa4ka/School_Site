@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шкільне життя невгамовних</title>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        :root {
+            --primary-color: #000000;
+            --secondary-color: #333333;
+            --accent-color: #0000FF;
+            --light-color: #ffffff;
+            --dark-color: #000000;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            scroll-behavior: smooth;
+            background-color: var(--light-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        header {
+            background-color: var(--dark-color);
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            color: var(--light-color);
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, #333, #666, #999);
+            animation: rotate 20s linear infinite;
+            z-index: -1;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            animation: slideIn 1s ease-out, pulse 2s infinite;
+            color: var(--light-color);
+        }
+
+        nav {
+            margin-top: 1rem;
+        }
+
+        nav a {
+            color: var(--light-color);
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 1.1rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        main {
+            animation: fadeIn 1s ease-out;
+        }
+
+        section {
+            margin-bottom: 3rem;
+            animation: slideIn 1s ease-out;
+        }
+
+        h2 {
+            font-size: 2rem;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+            color: var(--primary-color);
+        }
+
+        article {
+            background-color: var(--light-color);
+            border: 1px solid var(--dark-color);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        article:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 0;
+            transition: color 0.3s ease;
+            color: var(--secondary-color);
+        }
+
+        h3:hover {
+            color: var(--primary-color);
+        }
+
+        p {
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .author {
+            font-style: italic;
+            color: var(--secondary-color);
+            transition: color 0.3s ease;
+        }
+
+        .author:hover {
+            color: var(--primary-color);
+        }
+
+        footer {
+            background-color: var(--light-color);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .language-switch {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+
+        .language-switch button {
+            background-color: var(--accent-color);
+            color: var(--light-color);
+            border: 1px solid var(--light-color);
+            padding: 0.5rem 1rem;
+            margin-left: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .language-switch button:hover {
+            background-color: var(--light-color);
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .language-switch button.active {
+            background-color: var(--light-color);
+            color: var(--accent-color);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        .social-share {
+            margin-top: 1rem;
+        }
+
+        .social-share a {
+            display: inline-block;
+            margin-right: 0.5rem;
+            color: var(--accent-color);
+            transition: color 0.3s ease;
+        }
+
+        .social-share a:hover {
+            color: var(--secondary-color);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            h3 {
+                font-size: 1.2rem;
+            }
+            .language-switch {
+                position: static;
+                margin-top: 1rem;
+            }
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="language-switch">
+            <button onclick="changeLanguage('uk')" class="active" data-lang="uk">UA</button>
+            <button onclick="changeLanguage('pl')" data-lang="pl">PL</button>
+        </div>
+        <h1 data-translate="title">Шкільне життя невгамовних</h1>
+        <nav>
+            <a href="#news" data-translate="news">Новини</a>
+            <a href="#events" data-translate="events">Події</a>
+            <a href="#achievements" data-translate="achievements">Досягнення</a>
+            <a href="#creativity" data-translate="creativity">Творчість</a>
+            <a href="#gallery" data-translate="gallery">Галерея</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section id="news">
+            <h2 data-translate="latest_news">Останні новини</h2>
+            <article>
+                <h3 data-translate="news_1_title">Відкриття нової спортивної зали</h3>
+                <p data-translate="news_1_content">Минулого тижня в нашій школі відбулося урочисте відкриття нової спортивної зали. Тепер учні матимуть ще більше можливостей для занять спортом та фізичного розвитку.</p>
+                <p class="author" data-translate="news_1_author">Автор: Марія Петренко</p>
+                <div class="social-share">
+                    <a href="#" onclick="shareOnFacebook()">Facebook</a>
+                    <a href="#" onclick="shareOnTwitter()">Twitter</a>
+                </div>
+            </article>
+            <article>
+                <h3 data-translate="news_2_title">Перемога у міському конкурсі читців</h3>
+                <p data-translate="news_2_content">Наша учениця 9-го класу, Олена Коваленко, здобула перше місце у міському конкурсі читців. Вітаємо Олену з цим досягненням!</p>
+                <p class="author" data-translate="news_2_author">Автор: Іван Сидоренко</p>
+                <div class="social-share">
+                    <a href="#" onclick="shareOnFacebook()">Facebook</a>
+                    <a href="#" onclick="shareOnTwitter()">Twitter</a>
+                </div>
+            </article>
+            <article>
+                <h3 data-translate="news_3_title">Запуск нового освітнього проекту</h3>
+                <p data-translate="news_3_content">Наша школа розпочинає новий освітній проект "Цифрове майбутнє". Учні матимуть можливість вивчати програмування та робототехніку на сучасному обладнанні.</p>
+                <p class="author" data-translate="news_3_author">Автор: Олег Ковальчук</p>
+                <div class="social-share">
+                    <a href="#" onclick="shareOnFacebook()">Facebook</a>
+                    <a href="#" onclick="shareOnTwitter()">Twitter</a>
+                </div>
+            </article>
+        </section>
+
+        <section id="events">
+            <h2 data-translate="upcoming_events">Майбутні події</h2>
+            <article>
+                <h3 data-translate="events_1_title">Шкільний ярмарок талантів</h3>
+                <p data-translate="events_1_content">Наступного місяця відбудеться щорічний шкільний ярмарок талантів. Запрошуємо всіх учнів взяти участь та показати свої здібності!</p>
+                <p class="author" data-translate="events_1_author">Автор: Олександра Василенко</p>
+            </article>
+            <article>
+                <h3 data-translate="events_2_title">День відкритих дверей</h3>
+                <p data-translate="events_2_content">Запрошуємо всіх батьків та майбутніх учнів на День відкритих дверей, який відбудеться наступної суботи. Ви зможете ознайомитися з нашою школою та поспілкуватися з вчителями.</p>
+                <p class="author" data-translate="events_2_author">Автор: Михайло Коваленко</p>
+            </article>
+            <article>
+                <h3 data-translate="events_3_title">Екологічна акція "Зелена школа"</h3>
+                <p data-translate="events_3_content">У рамках проекту "Зелена школа" ми організовуємо акцію з висадки дерев на території школи. Запрошуємо всіх учнів та їхніх батьків долучитися до цієї важливої ініціативи.</p>
+                <p class="author" data-translate="events_3_author">Автор: Ірина Лисенко</p>
+            </article>
+        </section>
+
+        <section id="achievements">
+            <h2 data-translate="our_achievements">Наші досягнення</h2>
+            <article>
+                <h3 data-translate="achievements_1_title">Перемога у обласній олімпіаді з математики</h3>
+                <p data-translate="achievements_1_content">Команда нашої школи посіла перше місце в обласній олімпіаді з математики. Вітаємо наших розумників!</p>
+                <p class="author" data-translate="achievements_1_author">Автор: Андрій Мельник</p>
+            </article>
+            <article>
+                <h3 data-translate="achievements_2_title">Успіх на міжнародному конкурсі з англійської мови</h3>
+                <p data-translate="achievements_2_content">Наші учні показали відмінні результати на міжнародному конкурсі з англійської мови "Puzzle English". Троє учнів увійшли до топ-10 у своїх вікових категоріях.</p>
+                <p class="author" data-translate="achievements_2_author">Автор: Ольга Шевченко</p>
+            </article>
+            <article>
+                <h3 data-translate="achievements_3_title">Перемога у міському турнірі з волейболу</h3>
+                <p data-translate="achievements_3_content">Наша шкільна команда з волейболу виборола перше місце у міському турнірі. Вітаємо наших спортсменів з цим чудовим досягненням!</p>
+                <p class="author" data-translate="achievements_3_author">Автор: Сергій Петров</p>
+            </article>
+        </section>
+
+        <section id="creativity">
+            <h2 data-translate="creative_corner">Творчий куточок</h2>
+            <article>
+                <h3 data-translate="creativity_1_title">Вірш "Моя школа"</h3>
+                <p data-translate="creativity_1_content">
+                    Моя школа - це мій другий дім,<br>
+                    Де знання я здобуваю кожен день.<br>
+                    Тут друзі, вчителі - усі як рідні,<br>
+                    І кожен день новий, неповторний.
+                </p>
+                <p class="author" data-translate="creativity_1_author">Автор: Софія Литвиненко, 7-А клас</p>
+            </article>
+            <article>
+                <h3 data-translate="creativity_2_title">Малюнок "Школа майбутнього"</h3>
+                <p data-translate="creativity_2_content">Учень 6-Б класу, Максим Коваленко, створив чудовий малюнок на тему "Школа майбутнього". На малюнку зображено сучасну будівлю школи з сонячними панелями, зеленими зонами та інноваційними класами.</p>
+                <p class="author" data-translate="creativity_2_author">Автор: Тетяна Мороз</p>
+            </article>
+            <article>
+                <h3 data-translate="creativity_3_title">Есе "Чому я люблю свою школу"</h3>
+                <p data-translate="creativity_3_content">Учениця 8-А класу, Марія Іваненко, написала зворушливе есе про те, чому вона любить свою школу. У своєму творі Марія розповідає про дружню атмосферу, цікаві уроки та підтримку вчителів.</p>
+                <p class="author" data-translate="creativity_3_author">Автор: Оксана Павленко</p>
+            </article>
+        </section>
+
+        <section id="gallery">
+            <h2 data-translate="photo_gallery">Фотогалерея</h2>
+            <div class="gallery">
+                <img src="/placeholder.svg?height=200&width=200" alt="Шкільне подвір'я">
+                <img src="/placeholder.svg?height=200&width=200" alt="Нова спортивна зала">
+                <img src="/placeholder.svg?height=200&width=200" alt="Шкільна їдальня">
+                <img src="/placeholder.svg?height=200&width=200" alt="Кабінет інформатики">
+                <img src="/placeholder.svg?height=200&width=200" alt="Шкільна бібліотека">
+                <img src="/placeholder.svg?height=200&width=200" alt="Актова зала">
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p data-translate="footer">&copy; 2024 Шкільне життя невгамовних. Усі права захищено.</p>
+    </footer>
+
+    <a href="#" class="back-to-top" id="backToTop">↑</a>
+
+    <script>
+        const translations = {
+            uk: {
+                title: "Шкільне життя невгамовних",
+                news: "Новини",
+                events: "Події",
+                achievements: "Досягнення",
+                creativity: "Творчість",
+                gallery: "Галерея",
+                latest_news: "Останні новини",
+                news_1_title: "Відкриття нової спортивної зали",
+                news_1_content: "Минулого тижня в нашій школі відбулося урочисте відкриття нової спортивної зали. Тепер учні матимуть ще більше можливостей для занять спортом та фізичного розвитку.",
+                news_1_author: "Автор: Марія Петренко",
+                news_2_title: "Перемога у міському конкурсі читців",
+                news_2_content: "Наша учениця 9-го класу, Олена Коваленко, здобула перше місце у міському конкурсі читців. Вітаємо Олену з цим досягненням!",
+                news_2_author: "Автор: Іван Сидоренко",
+                news_3_title: "Запуск нового освітнього проекту",
+                news_3_content: "Наша школа розпочинає новий освітній проект \"Цифрове майбутнє\". Учні матимуть можливість вивчати програмування та робототехніку на сучасному обладнанні.",
+                news_3_author: "Автор: Олег Ковальчук",
+                upcoming_events: "Майбутні події",
+                events_1_title: "Шкільний ярмарок талантів",
+                events_1_content: "Наступного місяця відбудеться щорічний шкільний ярмарок талантів. Запрошуємо всіх учнів взяти участь та показати свої здібності!",
+                events_1_author: "Автор: Олександра Василенко",
+                events_2_title: "День відкритих дверей",
+                events_2_content: "Запрошуємо всіх батьків та майбутніх учнів на День відкритих дверей, який відбудеться наступної суботи. Ви зможете ознайомитися з нашою школою та поспілкуватися з вчителями.",
+                events_2_author: "Автор: Михайло Коваленко",
+                events_3_title: "Екологічна акція \"Зелена школа\"",
+                events_3_content: "У рамках проекту \"Зелена школа\" ми організовуємо акцію з висадки дерев на території школи. Запрошуємо всіх учнів та їхніх батьків долучитися до цієї важливої ініціативи.",
+                events_3_author: "Автор: Ірина Лисенко",
+                our_achievements: "Наші досягнення",
+                achievements_1_title: "Перемога у обласній олімпіаді з математики",
+                achievements_1_content: "Команда нашої школи посіла перше місце в обласній олімпіаді з математики. Вітаємо наших розумників!",
+                achievements_1_author: "Автор: Андрій Мельник",
+                achievements_2_title: "Успіх на міжнародному конкурсі з англійської мови",
+                achievements_2_content: "Наші учні показали відмінні результати на міжнародному конкурсі з англійської мови \"Puzzle English\". Троє учнів увійшли до топ-10 у своїх вікових категоріях.",
+                achievements_2_author: "Автор: Ольга Шевченко",
+                achievements_3_title: "Перемога у міському турнірі з волейболу",
+                achievements_3_content: "Наша шкільна команда з волейболу виборола перше місце у міському турнірі. Вітаємо наших спортсменів з цим чудовим досягненням!",
+                achievements_3_author: "Автор: Сергій Петров",
+                creative_corner: "Творчий куточок",
+                creativity_1_title: "Вірш \"Моя школа\"",
+                creativity_1_content: "Моя школа - це мій другий дім,<br>Де знання я здобуваю кожен день.<br>Тут друзі, вчителі - усі як рідні,<br>І кожен день новий, неповторний.",
+                creativity_1_author: "Автор: Софія Литвиненко, 7-А клас",
+                creativity_2_title: "Малюнок \"Школа майбутнього\"",
+                creativity_2_content: "Учень 6-Б класу, Максим Коваленко, створив чудовий малюнок на тему \"Школа майбутнього\". На малюнку зображено сучасну будівлю школи з сонячними панелями, зеленими зонами та інноваційними класами.",
+                creativity_2_author: "Автор: Тетяна Мороз",
+                creativity_3_title: "Есе \"Чому я люблю свою школу\"",
+                creativity_3_content: "Учениця 8-А класу, Марія Іваненко, написала зворушливе есе про те, чому вона любить свою школу. У своєму творі Марія розповідає про дружню атмосферу, цікаві уроки та підтримку вчителів.",
+                creativity_3_author: "Автор: Оксана Павленко",
+                photo_gallery: "Фотогалерея",
+                footer: "&copy; 2024 Шкільне життя невгамовних. Усі права захищено."
+            },
+            pl: {
+                title: "Życie szkolne niespokojnych",
+                news: "Aktualności",
+                events: "Wydarzenia",
+                achievements: "Osiągnięcia",
+                creativity: "Twórczość",
+                gallery: "Galeria",
+                latest_news: "Najnowsze wiadomości",
+                news_1_title: "Otwarcie nowej sali gimnastycznej",
+                news_1_content: "W zeszłym tygodniu w naszej szkole odbyło się uroczyste otwarcie nowej sali gimnastycznej. Teraz uczniowie będą mieli jeszcze więcej możliwości uprawiania sportu i rozwoju fizycznego.",
+                news_1_author: "Autor: Maria Petrenko",
+                news_2_title: "Zwycięstwo w miejskim konkursie recytator",
+                news_2_content: "Nasza uczennica 9 klasy, Olena Kowalenko, zajęła pierwsze miejsce w miejskim konkursie recytatorskim. Gratulujemy Olenie tego osiągnięcia!",
+                news_2_author: "Autor: Iwan Sydorenko",
+                news_3_title: "Uruchomienie nowego projektu edukacyjnego",
+                news_3_content: "Nasza szkoła rozpoczyna nowy projekt edukacyjny \"Cyfrowa przyszłość\". Uczniowie będą mieli możliwość nauki programowania i robotyki na nowoczesnym sprzęcie.",
+                news_3_author: "Autor: Oleg Kowalczuk",
+                upcoming_events: "Nadchodzące wydarzenia",
+                events_1_title: "Szkolny jarmark talentów",
+                events_1_content: "W przyszłym miesiącu odbędzie się doroczny szkolny jarmark talentów. Zapraszamy wszystkich uczniów do udziału i zaprezentowania swoich umiejętności!",
+                events_1_author: "Autor: Aleksandra Wasylenko",
+                events_2_title: "Dzień otwartych drzwi",
+                events_2_content: "Zapraszamy wszystkich rodziców i przyszłych uczniów na Dzień Otwartych Drzwi, który odbędzie się w następną sobotę. Będziecie mogli zapoznać się z naszą szkołą i porozmawiać z nauczycielami.",
+                events_2_author: "Autor: Michał Kowalenko",
+                events_3_title: "Akcja ekologiczna \"Zielona szkoła\"",
+                events_3_content: "W ramach projektu \"Zielona szkoła\" organizujemy akcję sadzenia drzew na terenie szkoły. Zapraszamy wszystkich uczniów i ich rodziców do przyłączenia się do tej ważnej inicjatywy.",
+                events_3_author: "Autor: Irena Łysenko",
+                our_achievements: "Nasze osiągnięcia",
+                achievements_1_title: "Zwycięstwo w wojewódzkiej olimpiadzie matematycznej",
+                achievements_1_content: "Drużyna naszej szkoły zajęła pierwsze miejsce w wojewódzkiej olimpiadzie matematycznej. Gratulujemy naszym bystrzakom!",
+                achievements_1_author: "Autor: Andrzej Melnyk",
+                achievements_2_title: "Sukces w międzynarodowym konkursie języka angielskiego",
+                achievements_2_content: "Nasi uczniowie pokazali doskonałe wyniki w międzynarodowym konkursie języka angielskiego \"Puzzle English\". Troje uczniów znalazło się w top 10 w swoich kategoriach wiekowych.",
+                achievements_2_author: "Autor: Olga Szewczenko",
+                achievements_3_title: "Zwycięstwo w miejskim turnieju siatkówki",
+                achievements_3_content: "Nasza szkolna drużyna siatkówki zdobyła pierwsze miejsce w miejskim turnieju. Gratulujemy naszym sportowcom tego wspaniałego osiągnięcia!",
+                achievements_3_author: "Autor: Sergiusz Petrow",
+                creative_corner: "Kącik twórczy",
+                creativity_1_title: "Wiersz \"Moja szkoła\"",
+                creativity_1_content: "Moja szkoła to mój drugi dom,<br>Gdzie codziennie zdobywam wiedzę.<br>Tu przyjaciele, nauczyciele - wszyscy jak rodzina,<br>I każdy dzień nowy, niepowtarzalny.",
+                creativity_1_author: "Autor: Zofia Lytwynenko, klasa 7-A",
+                creativity_2_title: "Rysunek \"Szkoła przyszłości\"",
+                creativity_2_content: "Uczeń klasy 6-B, Maksym Kowalenko, stworzył wspaniały rysunek na temat \"Szkoła przyszłości\". Na rysunku przedstawiono nowoczesny budynek szkoły z panelami słon",
+                creativity_2_author: "Autor: Tatiana Moroz",
+                creativity_3_title: "Esej \"Dlaczego kocham moją szkołę\"",
+                creativity_3_content: "Uczennica klasy 8-A, Maria Iwanenko, napisała wzruszający esej o tym, dlaczego kocha swoją szkołę. W swoim utworze Maria opowiada o przyjaznej atmosferze, ciekawych lekcjach i wsparciu nauczycieli.",
+                creativity_3_author: "Autor: Oksana Pawlenko",
+                photo_gallery: "Galeria zdjęć",
+                footer: "&copy; 2024 Życie szkolne niespokojnych. Wszelkie prawa zastrzeżone."
+            }
+        };
+
+        function changeLanguage(lang) {
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+
+            document.documentElement.lang = lang;
+
+            document.querySelectorAll('.language-switch button').forEach(button => {
+                button.classList.remove('active');
+                if (button.getAttribute('data-lang') === lang) {
+                    button.classList.add('active');
+                }
+            });
+        }
+
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 100) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        function shareOnFacebook() {
+            // Add your Facebook share logic here
+            alert('Sharing on Facebook!');
+        }
+
+        function shareOnTwitter() {
+            // Add your Twitter share logic here
+            alert('Sharing on Twitter!');
+        }
+    </script>
+</body>
+</html>
